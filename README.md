@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Compress Text
+	
+```
+ POST https://encrypt-hackthon.herokuapp.com/api/v1/encryptions/convert
+ {
+ 	input_string: 'aaaabbcccccdde',
+ 	mode: 'compress'
+ }
+```
 
-Things you may want to cover:
+2. Decompress Text
 
-* Ruby version
+```
+ POST https://encrypt-hackthon.herokuapp.com/api/v1/encryptions/convert
+ {
+ 	input_string: '4a2b5c2de',
+ 	mode: 'decompress'
+ }
+```
 
-* System dependencies
+3. Encrypt Text
 
-* Configuration
+```
+ POST https://encrypt-hackthon.herokuapp.com/api/v1/encryptions/start
+ {
+ 	input_string: 'abcdef',
+ 	key: 1
+ 	mode: 'bcdefg'
+ }
+```
 
-* Database creation
 
-* Database initialization
+3. Decrypt Text
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+ POST https://encrypt-hackthon.herokuapp.com/api/v1/encryptions/start
+ {
+ 	input_string: 'klm0',
+ 	key: 10
+ 	mode: 'abc0'
+ }
+```
