@@ -27,18 +27,18 @@
  {
  	input_string: 'abcdef',
  	key: 1
- 	mode: 'bcdefg'
+ 	mode: 'encrypt'
  }
 ```
 
 
-3. Decrypt Text
+4. Decrypt Text
 
 ```
  POST https://encrypt-hackthon.herokuapp.com/api/v1/encryptions/start
  {
  	input_string: 'klm0',
  	key: 10
- 	mode: 'abc0'
+ 	mode: 'decrypt'
  }
 ```
