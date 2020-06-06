@@ -1,9 +1,13 @@
 class StringFormater
 
-  attr_reader :input_string
+  attr_reader :input_string, :key
 
-  def initialize(input_string = '')
+  ALPHABETS = ("a".."z").to_a
+  NUMBERS = (0..9).to_a.map(&:to_s)
+
+  def initialize(input_string = '', key='')
     @input_string = input_string
+    @key = key
   end
 
   def compress
@@ -50,6 +54,56 @@ class StringFormater
 
       acc
     end
+  end
+
+
+  def encrypt
+    input_string.split('').map(&:downcase).reduce('') do |acc, letter|
+     
+      if ALPHABETS.include?(letter)
+        letter_index = ALPHABETS.index(letter)
+        acc = acc + ALPHABETS[letter_index + key - 26]
+
+      elsif NUMBERS.include?(letter)
+        letter_index = NUMBERS.index(letter)
+        acc = acc + NUMBERS[letter_index + key - 10] 
+
+      else
+        acc = acc + letter
+      end
+
+      acc
+    end
+  end
+
+  def decrypt
+    input_string.split('').map(&:downcase).reduce('') do |acc, letter|
+      if ALPHABETS.include?(letter)
+        letter_index = ALPHABETS.index(letter)
+        pointer_index = letter_index - key
+
+        if pointer_index.negative?
+          acc = acc + ALPHABETS[pointer_index + 26]
+        else
+          acc = acc + ALPHABETS[pointer_index]
+        end
+      elsif NUMBERS.include?(letter)
+        letter_index = NUMBERS.index(letter)
+        pointer_index = letter_index - key
+
+        if pointer_index.negative?
+          acc = acc + NUMBERS[pointer_index + 10] 
+        else
+          acc = acc + NUMBERS[pointer_index]
+        end
+
+      else
+        acc = acc + letter
+      end
+
+      acc
+    end
+
   end
 
 end

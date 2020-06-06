@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :encryptions, only: [] do
         collection do
          post :convert
+         post :start
         end
       end      
     end
